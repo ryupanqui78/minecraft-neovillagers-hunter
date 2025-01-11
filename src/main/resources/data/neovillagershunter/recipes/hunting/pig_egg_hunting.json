@@ -1,0 +1,12 @@
+{
+  "type": "neovillagershunter:hunting",
+  "group": "eggs",
+  "weight": 7,
+  "max": 3,
+  "ingredient": {
+    "item": "minecraft:pumpkin",
+    "count": 1
+  },
+  "result": "minecraft:pig_spawn_egg",
+  "count": 1
+}

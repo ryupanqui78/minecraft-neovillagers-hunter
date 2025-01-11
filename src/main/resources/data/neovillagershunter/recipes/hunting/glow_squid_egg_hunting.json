@@ -1,0 +1,12 @@
+{
+  "type": "neovillagershunter:hunting",
+  "group": "eggs",
+  "weight": 1,
+  "max": 2,
+  "ingredient": {
+    "item": "minecraft:pufferfish",
+    "count": 2
+  },
+  "result": "minecraft:glow_squid_spawn_egg",
+  "count": 1
+}

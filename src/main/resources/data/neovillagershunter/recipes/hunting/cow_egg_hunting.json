@@ -1,0 +1,12 @@
+{
+  "type": "neovillagershunter:hunting",
+  "group": "eggs",
+  "weight": 7,
+  "max": 2,
+  "ingredient": {
+    "item": "minecraft:wheat",
+    "count": 4
+  },
+  "result": "minecraft:cow_spawn_egg",
+  "count": 2
+}

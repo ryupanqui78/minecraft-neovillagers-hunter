@@ -1,27 +1,91 @@
+# Neo-Villagers - Hunter
 
-Installation information
-=======
+This mod adds the Hunter villager. It trades hunting items, and sword tiers (iron and diamond with enchantments).
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions at [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Workstation
+The Hunting table is used to give spawn eggs, the egg is selected randomly and needs an emerald and a arrow.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+The eggs can be selected using special element for each kind of egg.
 
-> **Note**: For Eclipse, use tasks in `Launch Group` instead of ones founds in `Java Application`. A preparation task must run before launching the game. NeoGradle uses launch groups to do these subsequently.
+### Crafting
+Requires one leather, one bow, two arrows and three planks (any type).
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## Trades
+<table>
+  <tr>
+    <th style="width:10%">Level</th>
+    <th style="width:10%">Item wanted</th><th style="width:10%">Default quantity</th>
+    <th style="width:10%">Item given</th><th style="width:10%">Quantity</th>
+    <th style="width:10%">Number of trades</th><th style="width:10%">XP</th>
+  </tr>
+  <tr>
+    <td rowspan=3>1</td>
+    <td>Bone</td><td>24</td>
+    <td>Emerald</td><td>1</td>
+    <td>24</td><td>2</td>
+  </tr>
+  <tr>
+    <td>Feather</td><td>24</td>
+    <td>Emerald</td><td>1</td>
+    <td>24</td><td>2</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>1</td>
+    <td>Wooden sword</td><td>1</td>
+    <td>3</td><td>8</td>
+  </tr>
+  <tr>
+    <td rowspan=3>2</td>
+    <td>Spider Eye</td><td>16</td>
+    <td>Emerald</td><td>1</td>
+    <td>16</td><td>4</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>3</td>
+    <td>Slime Ball</td><td>2</td>
+    <td>8</td><td>4</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>1</td>
+    <td>Wooden sword</td><td>1</td>
+    <td>5</td><td>8</td>
+  </tr>
+  <tr>
+    <td rowspan=3>3</td>
+    <td>Gunpower</td><td>16</td>
+    <td>Emerald</td><td>1</td>
+    <td>16</td><td>4</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>1</td>
+    <td>Arrow</td><td>16</td>
+    <td>12</td><td>4</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>10 - 25</td>
+    <td>Enchanted Iron sword</td><td>1</td>
+    <td>3</td><td>10</td>
+  </tr>
+  <tr>
+    <td rowspan=2>4</td>
+    <td>Emerald</td><td>2</td>
+    <td>Magma Cream</td><td>1</td>
+    <td>16</td><td>4</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>3</td>
+    <td>Blaze Rod</td><td>1</td>
+    <td>16</td><td>8</td>
+  </tr>
+  <tr>
+    <td rowspan=2>5</td>
+    <td>Emerald</td><td>6</td>
+    <td>Ghast Tear</td><td>1</td>
+    <td>8</td><td>8</td>
+  </tr>
+  <tr>
+    <td>Emerald</td><td>23 - 38</td>
+    <td>Enchanted Diamond sword</td><td>1</td>
+    <td>3</td><td>15</td>
+  </tr>
+</table>

@@ -1,0 +1,13 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/cube",
+	"textures": {
+		"south": "neovillagershunter:block/hunting_back",
+		"particle": "neovillagershunter:block/hunting_bottom",
+		"down": "neovillagershunter:block/hunting_bottom",
+		"north": "neovillagershunter:block/hunting_front",
+		"east": "neovillagershunter:block/hunting_left",
+		"west": "neovillagershunter:block/hunting_right",
+		"up": "neovillagershunter:block/hunting_top"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "type": "neovillagershunter:hunting",
+  "group": "eggs",
+  "weight": 5,
+  "max": 2,
+  "ingredient": {
+    "item": "minecraft:kelp",
+    "count": 2
+  },
+  "result": "minecraft:squid_spawn_egg",
+  "count": 1
+}
