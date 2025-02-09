@@ -4,9 +4,11 @@
   "weight": 2,
   "max": 2,
   "ingredient": {
-    "item": "minecraft:seagrass",
+    "id": "minecraft:seagrass",
     "count": 2
   },
-  "result": "minecraft:turtle_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:turtle_spawn_egg",
+    "count": 1
+  }
 }

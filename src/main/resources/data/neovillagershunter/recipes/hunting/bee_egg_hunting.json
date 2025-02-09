@@ -4,9 +4,11 @@
   "weight": 2,
   "max": 2,
   "ingredient": {
-    "item": "minecraft:dandelion",
+    "id": "minecraft:dandelion",
     "count": 2
   },
-  "result": "minecraft:bee_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:bee_spawn_egg",
+    "count": 1
+  }
 }

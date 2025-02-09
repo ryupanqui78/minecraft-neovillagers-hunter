@@ -5,10 +5,10 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.client.gui.screens.inv
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@Mod.EventBusSubscriber(modid = NeoVillagersHunter.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = NeoVillagersHunter.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class SetupClientModEvents {
     
     @SubscribeEvent

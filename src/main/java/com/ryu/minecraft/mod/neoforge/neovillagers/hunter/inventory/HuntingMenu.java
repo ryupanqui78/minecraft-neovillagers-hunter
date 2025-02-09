@@ -162,11 +162,7 @@ public class HuntingMenu extends AbstractContainerMenu {
                 if (resource.isEmpty()) {
                     this.resultSlot.setItem(0, this.randomSelection);
                 } else {
-                    final Optional<HuntingRecipe> recipeResult = HuntingHelper.selectRecipeFromResource(this.level,
-                            resource);
-                    if (recipeResult.isPresent()) {
-                        this.resultSlot.setItem(0, HuntingHelper.validateRecipe(recipeResult.get(), resource));
-                    }
+                    this.resultSlot.setItem(0, HuntingHelper.selectEggFromResource(this.level, resource));
                 }
             } else {
                 this.resultSlot.setItem(0, ItemStack.EMPTY);

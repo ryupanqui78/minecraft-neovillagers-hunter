@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
@@ -30,12 +29,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class HuntingBlock extends Block {
     
     public static final String BLOCK_NAME = "hunting_table";
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final MapCodec<HuntingBlock> CODEC = BlockBehaviour.simpleCodec(HuntingBlock::new);
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     
     private static final Component CONTAINER_TITLE = Component.translatable("screen.container.hunting");
-    
-    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     
     public HuntingBlock(Properties properties) {
         super(properties);
@@ -74,11 +72,12 @@ public class HuntingBlock extends Block {
     }
     
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (!pLevel.isClientSide && (pPlayer instanceof ServerPlayer)) {
             pPlayer.openMenu(pState.getMenuProvider(pLevel, pPos));
             return InteractionResult.CONSUME;
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
+    
 }

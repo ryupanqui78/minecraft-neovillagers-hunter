@@ -1,3 +1,5 @@
+0.1.2-1.20.6 Changelog:
+ - Migrating to Minecraft NeoForge 1.20.6.
 0.0.1-1.20.4 Changelog:
  - First version creating the Hunter villager and the hunting table.
  - Release first version

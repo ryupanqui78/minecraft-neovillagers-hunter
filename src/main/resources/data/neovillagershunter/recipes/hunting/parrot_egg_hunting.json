@@ -4,9 +4,11 @@
   "weight": 2,
   "max": 2,
   "ingredient": {
-    "item": "minecraft:cookie",
+    "id": "minecraft:cookie",
     "count": 1
   },
-  "result": "minecraft:parrot_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:parrot_spawn_egg",
+    "count": 1
+  }
 }

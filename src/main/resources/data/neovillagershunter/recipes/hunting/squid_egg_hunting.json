@@ -4,9 +4,11 @@
   "weight": 5,
   "max": 2,
   "ingredient": {
-    "item": "minecraft:kelp",
+    "id": "minecraft:kelp",
     "count": 2
   },
-  "result": "minecraft:squid_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:squid_spawn_egg",
+    "count": 1
+  }
 }

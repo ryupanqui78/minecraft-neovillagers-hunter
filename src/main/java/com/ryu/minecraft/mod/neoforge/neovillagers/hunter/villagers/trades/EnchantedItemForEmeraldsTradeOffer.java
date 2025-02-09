@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 
 public class EnchantedItemForEmeraldsTradeOffer extends TradeOfferItemListing {
@@ -21,10 +22,10 @@ public class EnchantedItemForEmeraldsTradeOffer extends TradeOfferItemListing {
     @Override
     public MerchantOffer getOffer(Entity pTrader, RandomSource pRandom) {
         final int i = 5 + pRandom.nextInt(15);
-        final ItemStack itemstack = EnchantmentHelper.enchantItem(pRandom, new ItemStack(this.itemSell.getItem()), i,
-                false);
+        final ItemStack itemstack = EnchantmentHelper.enchantItem(pTrader.level().enabledFeatures(), pRandom,
+                new ItemStack(this.itemSell.getItem()), i, false);
         final int j = Math.min(this.baseEmeraldCost + i, 64);
-        final ItemStack itemcost = new ItemStack(Items.EMERALD, j);
+        final ItemCost itemcost = new ItemCost(Items.EMERALD, j);
         return new MerchantOffer(itemcost, itemstack, this.maxUses, this.villagerXp,
                 TradeOfferItemListing.PRICE_MULTIPLIER);
     }

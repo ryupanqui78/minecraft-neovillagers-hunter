@@ -27,6 +27,14 @@ public class HuntingHelper {
         return listRecipes;
     }
     
+    public static ItemStack selectEggFromResource(Level pLevel, ItemStack pItemStack) {
+        final Optional<HuntingRecipe> recipe = HuntingHelper.selectRecipeFromResource(pLevel, pItemStack);
+        if (recipe.isPresent()) {
+            return recipe.get().getResult().copy();
+        }
+        return ItemStack.EMPTY;
+    }
+    
     public static ItemStack selectOneRandomEgg(Level pLevel, Random seed) {
         final List<HuntingRecipe> listOfEggs = HuntingHelper.listAllRecipesOfHunting(pLevel);
         final double totalWeight = listOfEggs.stream().mapToDouble(HuntingRecipe::getWeight).reduce(0.0, Double::sum);

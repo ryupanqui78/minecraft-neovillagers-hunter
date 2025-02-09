@@ -4,9 +4,11 @@
   "weight": 3,
   "max": 2,
   "ingredient": {
-    "item": "minecraft:tropical_fish",
+    "id": "minecraft:tropical_fish",
     "count": 2
   },
-  "result": "minecraft:cat_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:cat_spawn_egg",
+    "count": 1
+  }
 }

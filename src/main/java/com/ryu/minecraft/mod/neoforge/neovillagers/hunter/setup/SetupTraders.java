@@ -5,10 +5,10 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.Hunter;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.Worker;
 
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 
-@Mod.EventBusSubscriber(modid = NeoVillagersHunter.MODID)
+@EventBusSubscriber(modid = NeoVillagersHunter.MODID)
 public class SetupTraders {
     
     @SubscribeEvent

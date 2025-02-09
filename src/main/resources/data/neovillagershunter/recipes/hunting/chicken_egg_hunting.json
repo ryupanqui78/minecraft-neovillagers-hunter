@@ -4,9 +4,11 @@
   "weight": 7,
   "max": 6,
   "ingredient": {
-    "item": "minecraft:wheat_seeds",
+    "id": "minecraft:wheat_seeds",
     "count": 4
   },
-  "result": "minecraft:chicken_spawn_egg",
-  "count": 2
+  "result": {
+    "id": "minecraft:chicken_spawn_egg",
+    "count": 2
+  }
 }

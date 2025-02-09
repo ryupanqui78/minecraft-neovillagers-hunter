@@ -4,17 +4,18 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 
 public class ItemForEmeraldTradeOffer extends TradeOfferItemListing {
-    private final ItemStack itemCost;
+    private final ItemCost itemCost;
     private final ItemStack itemSell;
     
     public ItemForEmeraldTradeOffer(ItemLike pItemSell, int pEmeraldCost, int pCount, int pMaxUses, int pVillagerXp) {
         super(pMaxUses, pVillagerXp);
         
-        this.itemCost = new ItemStack(Items.EMERALD, pEmeraldCost);
+        this.itemCost = new ItemCost(Items.EMERALD, pEmeraldCost);
         this.itemSell = new ItemStack(pItemSell, pCount);
     }
     

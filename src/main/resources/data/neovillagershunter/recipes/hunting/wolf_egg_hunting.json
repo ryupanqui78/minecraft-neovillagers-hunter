@@ -4,9 +4,11 @@
   "weight": 3,
   "max": 4,
   "ingredient": {
-    "item": "minecraft:bone",
+    "id": "minecraft:bone",
     "count": 4
   },
-  "result": "minecraft:wolf_spawn_egg",
-  "count": 2
+  "result": {
+    "id": "minecraft:wolf_spawn_egg",
+    "count": 2
+  }
 }

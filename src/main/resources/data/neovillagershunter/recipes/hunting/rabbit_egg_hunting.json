@@ -4,9 +4,11 @@
   "weight": 5,
   "max": 3,
   "ingredient": {
-    "item": "minecraft:carrot",
+    "id": "minecraft:carrot",
     "count": 2
   },
-  "result": "minecraft:rabbit_spawn_egg",
-  "count": 1
+  "result": {
+    "id": "minecraft:rabbit_spawn_egg",
+    "count": 1
+  }
 }
