@@ -10,9 +10,9 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.NeoVillagersHunter;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.item.crafting.HuntingRecipe;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeType;
 
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 public class HuntingHelper {
@@ -53,12 +53,11 @@ public class HuntingHelper {
     
     public static Optional<HuntingRecipe> selectRecipeFromResource(Level pLevel, ItemStack pItemStack) {
         final List<RecipeHolder<HuntingRecipe>> listRecipes = pLevel.getRecipeManager()
-                .getRecipesFor(SetupRecipeType.HUNTING.get(), new SimpleContainer(pItemStack), pLevel);
+                .getRecipesFor(SetupRecipeType.HUNTING.get(), new SingleRecipeInput(pItemStack), pLevel);
         if (!listRecipes.isEmpty()) {
             return Optional.of(listRecipes.get(0).value());
         }
         return Optional.empty();
-        
     }
     
     public static ItemStack validateRecipe(HuntingRecipe recipe, ItemStack currentResource) {

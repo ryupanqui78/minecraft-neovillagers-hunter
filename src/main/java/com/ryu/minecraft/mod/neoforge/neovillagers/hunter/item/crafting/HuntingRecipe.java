@@ -3,10 +3,10 @@ package com.ryu.minecraft.mod.neoforge.neovillagers.hunter.item.crafting;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeSerializer;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeType;
 
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 public class HuntingRecipe extends SingleItemRecipe {
@@ -44,7 +44,7 @@ public class HuntingRecipe extends SingleItemRecipe {
     }
     
     @Override
-    public boolean matches(Container pContainer, Level pLevel) {
-        return this.ingredient.test(pContainer.getItem(0));
+    public boolean matches(SingleRecipeInput input, Level level) {
+        return this.ingredient.test(input.item());
     }
 }

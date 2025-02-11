@@ -14,7 +14,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class HuntingScreen extends AbstractContainerScreen<HuntingMenu> {
     
-    private static final ResourceLocation TEXTURE = new ResourceLocation(NeoVillagersHunter.MODID,
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(NeoVillagersHunter.MODID,
             "textures/gui/container/hunter_table.png");
     
     public HuntingScreen(HuntingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
