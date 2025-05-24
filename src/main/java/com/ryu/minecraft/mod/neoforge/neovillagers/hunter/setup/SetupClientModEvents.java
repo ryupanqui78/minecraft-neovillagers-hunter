@@ -8,12 +8,12 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = NeoVillagersHunter.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = NeoVillagersHunter.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupClientModEvents {
     
     @SubscribeEvent
     public static void registerMenuSreen(RegisterMenuScreensEvent event) {
-        event.register(SetupMenus.HUNTING_CONTAINER.get(), HuntingScreen::new);
+        event.register(SetupMenus.HUNTING.get(), HuntingScreen::new);
     }
     
     private SetupClientModEvents() {

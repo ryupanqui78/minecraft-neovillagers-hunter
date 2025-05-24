@@ -1,10 +1,15 @@
 package com.ryu.minecraft.mod.neoforge.neovillagers.hunter.client.gui.screens.inventory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.NeoVillagersHunter;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.inventory.HuntingMenu;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +20,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 public class HuntingScreen extends AbstractContainerScreen<HuntingMenu> {
     
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(NeoVillagersHunter.MODID,
-            "textures/gui/container/hunter_table.png");
+            "textures/gui/container/hunting.png");
     
     public HuntingScreen(HuntingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -29,9 +34,19 @@ public class HuntingScreen extends AbstractContainerScreen<HuntingMenu> {
     
     @Override
     protected void renderBg(GuiGraphics pGuiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-        final int edgeSpacingX = (this.width - this.imageWidth) / 2;
-        final int edgeSpacingY = (this.height - this.imageHeight) / 2;
-        pGuiGraphics.blit(HuntingScreen.TEXTURE, edgeSpacingX, edgeSpacingY, 0, 0, this.imageWidth, this.imageHeight);
+        pGuiGraphics.blit(RenderType::guiTextured, HuntingScreen.TEXTURE, this.leftPos, this.topPos, 0, 0,
+                this.imageWidth, this.imageHeight, 256, 256);
+        if (this.menu.isMissingResources()) {
+            final boolean isHover = this.isHovering(116, 31, 24, 24, pMouseX, pMouseY);
+            
+            pGuiGraphics.blit(RenderType::guiTextured, HuntingScreen.TEXTURE, this.leftPos + 87, this.topPos + 35, 176,
+                    0, 22, 15, 256, 256);
+            if (isHover) {
+                final List<Component> list = new ArrayList<>();
+                list.add((Component.translatable("container.hunting.missing.resource")).withStyle(ChatFormatting.RED));
+                pGuiGraphics.renderComponentTooltip(this.font, list, pMouseX, pMouseY);
+            }
+        }
     }
     
 }

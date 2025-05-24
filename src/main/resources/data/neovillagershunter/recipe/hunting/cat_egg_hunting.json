@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 3,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:tropical_fish",
-    "count": 2
-  },
+  "ingredient": "minecraft:tropical_fish",
+  "count": 6,
   "result": {
     "id": "minecraft:cat_spawn_egg",
     "count": 1

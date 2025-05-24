@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 2,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:cookie",
-    "count": 1
-  },
+  "ingredient": "minecraft:cookie",
+  "count": 6,
   "result": {
     "id": "minecraft:parrot_spawn_egg",
     "count": 1

@@ -9,18 +9,23 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.inventory.slots.ItemSl
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.item.crafting.HuntingRecipe;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupBlocks;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupMenus;
+import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeType;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
 public class HuntingMenu extends AbstractContainerMenu {
@@ -38,17 +43,18 @@ public class HuntingMenu extends AbstractContainerMenu {
         
         @Override
         public void onTake(Player player, ItemStack itemStack) {
-            HuntingMenu.this.onTake();
+            HuntingMenu.this.onTake(player, itemStack);
         }
         
     }
     
-    private static Random seed = new Random();
-    
     public static final String MENU_NAME = "hunting";
     
-    private final Level level;
+    private static Random seed = new Random();
+    
     private final ContainerLevelAccess access;
+    private final Level level;
+    private final DataSlot numIngredientsRequired = DataSlot.standalone();
     private final ResultContainer resultSlot = new ResultContainer();
     private final Container inputSlots = new SimpleContainer(3) {
         @Override
@@ -58,19 +64,20 @@ public class HuntingMenu extends AbstractContainerMenu {
         }
     };
     
-    private ItemStack randomSelection;
+    private final Optional<HuntingRecipe> randomSelection;
+    private final boolean hasResources = true;
     
     // Client constructor
-    public HuntingMenu(int windowId, Inventory playerInventory) {
-        this(windowId, playerInventory, ContainerLevelAccess.NULL);
+    public HuntingMenu(int pContainerId, Inventory playerInventory) {
+        this(pContainerId, playerInventory, ContainerLevelAccess.NULL);
     }
     
     // Server constructor
-    public HuntingMenu(int windowId, Inventory playerInventory, ContainerLevelAccess pAccess) {
-        super(SetupMenus.HUNTING_CONTAINER.get(), windowId);
+    public HuntingMenu(int pContainerId, Inventory pInventory, ContainerLevelAccess pAccess) {
+        super(SetupMenus.HUNTING.get(), pContainerId);
         
-        this.level = playerInventory.player.level();
         this.access = pAccess;
+        this.level = pInventory.player.level();
         
         this.addSlot(new EmeraldSlotInput(this.inputSlots, 0, 38, 20));
         this.addSlot(new ItemSlotInput(this.inputSlots, 1, 38, 50, Items.ARROW));
@@ -78,33 +85,28 @@ public class HuntingMenu extends AbstractContainerMenu {
         
         this.addSlot(new SlotOutput(this.resultSlot, 0, 120, 35));
         
-        this.addInventorySlots(playerInventory);
+        HuntingHelper.addDefaultInventorySlots(pInventory, 8, 142, 84, this::addSlot);
+        
+        this.addDataSlot(this.numIngredientsRequired);
         this.randomSelection = HuntingHelper.selectOneRandomEgg(this.level, HuntingMenu.seed);
     }
     
-    private void addInventorySlots(Inventory inventory) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(inventory, j + (i * 9) + 9, 8 + (j * 18), 84 + (i * 18)));
-            }
-        }
-        for (int k = 0; k < 9; k++) {
-            this.addSlot(new Slot(inventory, k, 8 + (k * 18), 142));
-        }
+    public boolean isMissingResources() {
+        return !this.hasResources;
     }
     
-    public void onTake() {
-        this.randomSelection = HuntingHelper.selectOneRandomEgg(this.level, HuntingMenu.seed);
-        this.inputSlots.removeItem(0, 1);
-        this.inputSlots.removeItem(1, 1);
-        if (!this.inputSlots.getItem(2).isEmpty()) {
-            final Optional<HuntingRecipe> recipe = HuntingHelper.selectRecipeFromResource(this.level,
-                    this.inputSlots.getItem(2));
-            if (recipe.isPresent()) {
-                this.inputSlots.removeItem(2, recipe.get().getIngredient().getItems()[0].getCount());
-            }
+    public void onTake(Player player, ItemStack itemStack) {
+        final ItemStack stack = this.slots.get(0).getItem();
+        final ItemStack emeraldStack = this.slots.get(1).getItem();
+        final ItemStack resource = this.slots.get(2).getItem();
+        itemStack.onCraftedBy(player.level(), player, itemStack.getCount());
+        stack.shrink(1);
+        emeraldStack.shrink(1);
+        if (!resource.isEmpty()) {
+            final int count = this.numIngredientsRequired.get();
+            resource.shrink(count);
+            this.slots.get(2).set(resource);
         }
-        this.broadcastChanges();
     }
     
     private boolean quickMoveOutput(ItemStack slotItem) {
@@ -156,24 +158,36 @@ public class HuntingMenu extends AbstractContainerMenu {
     
     @Override
     public void slotsChanged(Container pContainer) {
-        if (pContainer == this.inputSlots) {
-            if (!this.inputSlots.getItem(0).isEmpty() && !this.inputSlots.getItem(1).isEmpty()) {
-                final ItemStack resource = this.inputSlots.getItem(2);
-                if (resource.isEmpty()) {
-                    this.resultSlot.setItem(0, this.randomSelection);
-                } else {
-                    this.resultSlot.setItem(0, HuntingHelper.selectEggFromResource(this.level, resource));
-                }
+        final ItemStack itemStack = this.inputSlots.getItem(0);
+        final ItemStack emeraldStack = this.inputSlots.getItem(1);
+        
+        this.numIngredientsRequired.set(0);
+        if (!itemStack.isEmpty() && !emeraldStack.isEmpty()) {
+            final ItemStack resource = this.inputSlots.getItem(2);
+            if (resource.isEmpty() && this.randomSelection.isPresent()) {
+                this.resultSlot.setItem(0, this.randomSelection.get().getResult().copy());
+                this.numIngredientsRequired.set(this.randomSelection.get().getCount());
             } else {
-                this.resultSlot.setItem(0, ItemStack.EMPTY);
+                if (this.level instanceof final ServerLevel serverLevel) {
+                    final Optional<RecipeHolder<HuntingRecipe>> recipeResult = serverLevel.recipeAccess()
+                            .getRecipeFor(SetupRecipeType.HUNTING.get(), new SingleRecipeInput(resource), serverLevel);
+                    
+                    if (recipeResult.isPresent()) {
+                        final HuntingRecipe recipe = recipeResult.get().value();
+                        this.numIngredientsRequired.set(recipe.getCount());
+                        this.resultSlot.setItem(0, recipe.getResult().copy());
+                    }
+                }
             }
-            this.broadcastChanges();
+        } else {
+            this.resultSlot.setItem(0, ItemStack.EMPTY);
         }
+        
     }
     
     @Override
     public boolean stillValid(Player pPlayer) {
-        return AbstractContainerMenu.stillValid(this.access, pPlayer, SetupBlocks.HUNTING_TABLE.get());
+        return AbstractContainerMenu.stillValid(this.access, pPlayer, SetupBlocks.HUNTING.get());
     }
     
 }

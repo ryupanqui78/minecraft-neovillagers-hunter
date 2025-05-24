@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 1,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:pufferfish",
-    "count": 2
-  },
+  "ingredient": "minecraft:pufferfish",
+  "count": 8,
   "result": {
     "id": "minecraft:glow_squid_spawn_egg",
     "count": 1

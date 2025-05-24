@@ -3,12 +3,10 @@
   "group": "eggs",
   "weight": 7,
   "max": 3,
-  "ingredient": {
-    "id": "minecraft:short_grass",
-    "count": 6
-  },
+  "ingredient": "minecraft:short_grass",
+  "count": 4,
   "result": {
     "id": "minecraft:sheep_spawn_egg",
-    "count": 2
+    "count": 1
   }
 }

@@ -1,12 +1,10 @@
 {
   "type": "neovillagershunter:hunting",
   "group": "eggs",
-  "weight": 2,
+  "weight": 1,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:seagrass",
-    "count": 2
-  },
+  "ingredient": "minecraft:seagrass",
+  "count": 8,
   "result": {
     "id": "minecraft:turtle_spawn_egg",
     "count": 1

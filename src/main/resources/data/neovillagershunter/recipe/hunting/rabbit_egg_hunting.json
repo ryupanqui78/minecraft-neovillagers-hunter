@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 5,
   "max": 3,
-  "ingredient": {
-    "id": "minecraft:carrot",
-    "count": 2
-  },
+  "ingredient": "minecraft:carrot",
+  "count": 4,
   "result": {
     "id": "minecraft:rabbit_spawn_egg",
     "count": 1

@@ -30,8 +30,8 @@ public class EnchantedItemForEmeraldsTradeOffer extends TradeOfferItemListing {
     public MerchantOffer getOffer(Entity pTrader, RandomSource pRandom) {
         final int i = 5 + pRandom.nextInt(15);
         final RegistryAccess registryaccess = pTrader.level().registryAccess();
-        final Optional<HolderSet.Named<Enchantment>> optional = registryaccess.registryOrThrow(Registries.ENCHANTMENT)
-                .getTag(EnchantmentTags.ON_TRADED_EQUIPMENT);
+        final Optional<HolderSet.Named<Enchantment>> optional = registryaccess.lookupOrThrow(Registries.ENCHANTMENT)
+                .get(EnchantmentTags.ON_TRADED_EQUIPMENT);
         final ItemStack itemstack = EnchantmentHelper.enchantItem(pRandom, new ItemStack(this.itemSell.getItem()), i,
                 registryaccess, optional);
         final int j = Math.min(this.baseEmeraldCost + i, 64);

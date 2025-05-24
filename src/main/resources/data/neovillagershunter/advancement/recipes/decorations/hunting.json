@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "neovillagershunter:hunting_table"
+        "recipe": "neovillagershunter:hunting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "neovillagershunter:hunting_table"
+      "neovillagershunter:hunting"
     ]
   }
 }

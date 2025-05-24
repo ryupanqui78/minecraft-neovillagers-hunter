@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 7,
   "max": 3,
-  "ingredient": {
-    "id": "minecraft:pumpkin",
-    "count": 1
-  },
+  "ingredient": "minecraft:pumpkin",
+  "count": 2,
   "result": {
     "id": "minecraft:pig_spawn_egg",
     "count": 1

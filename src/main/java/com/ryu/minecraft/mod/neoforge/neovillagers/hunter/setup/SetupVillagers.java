@@ -22,9 +22,8 @@ public class SetupVillagers {
     
     public static final DeferredHolder<PoiType, PoiType> HUNTER_POI = SetupVillagers.POI_TYPES.register(
             Hunter.ENTITY_POI_NAME,
-            () -> new PoiType(
-                    ImmutableSet.copyOf(SetupBlocks.HUNTING_TABLE.get().getStateDefinition().getPossibleStates()), 1,
-                    1));
+            () -> new PoiType(ImmutableSet.copyOf(SetupBlocks.HUNTING.get().getStateDefinition().getPossibleStates()),
+                    1, 1));
     
     public static final DeferredHolder<VillagerProfession, VillagerProfession> HUNTER = SetupVillagers.VILLAGER_PROFESSIONS
             .register(Hunter.ENTITY_NAME,

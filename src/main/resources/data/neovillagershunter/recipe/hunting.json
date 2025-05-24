@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "#$#",
+    "@@@"
+  ],
+  "key": {
+    "$": "minecraft:bow",
+    "#": "minecraft:arrow",
+    "@": "#minecraft:planks",
+    "F": "minecraft:leather"
+  },
+  "result": {
+    "id": "neovillagershunter:hunting",
+    "count": 1
+  }
+}

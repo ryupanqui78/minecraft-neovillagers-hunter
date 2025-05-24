@@ -3,12 +3,10 @@
   "group": "eggs",
   "weight": 7,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:wheat",
-    "count": 4
-  },
+  "ingredient": "minecraft:wheat",
+  "count": 4,
   "result": {
     "id": "minecraft:cow_spawn_egg",
-    "count": 2
+    "count": 1
   }
 }

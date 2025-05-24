@@ -3,12 +3,10 @@
   "group": "eggs",
   "weight": 3,
   "max": 4,
-  "ingredient": {
-    "id": "minecraft:bone",
-    "count": 4
-  },
+  "ingredient": "minecraft:bone",
+  "count": 6,
   "result": {
     "id": "minecraft:wolf_spawn_egg",
-    "count": 2
+    "count": 1
   }
 }

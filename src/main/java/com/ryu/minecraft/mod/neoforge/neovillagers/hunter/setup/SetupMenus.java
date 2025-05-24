@@ -14,9 +14,8 @@ public class SetupMenus {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(BuiltInRegistries.MENU,
             NeoVillagersHunter.MODID);
     
-    public static final DeferredHolder<MenuType<?>, MenuType<HuntingMenu>> HUNTING_CONTAINER = SetupMenus.MENUS
-            .register(HuntingMenu.MENU_NAME,
-                    () -> new MenuType<HuntingMenu>(HuntingMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    public static final DeferredHolder<MenuType<?>, MenuType<HuntingMenu>> HUNTING = SetupMenus.MENUS.register(
+            HuntingMenu.MENU_NAME, () -> new MenuType<HuntingMenu>(HuntingMenu::new, FeatureFlags.DEFAULT_FLAGS));
     
     private SetupMenus() {
     }

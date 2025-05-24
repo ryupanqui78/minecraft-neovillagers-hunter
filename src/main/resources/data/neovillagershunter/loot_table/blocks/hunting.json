@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "neovillagershunter:hunting_table"
+          "name": "neovillagershunter:hunting"
         }
       ],
       "conditions": [

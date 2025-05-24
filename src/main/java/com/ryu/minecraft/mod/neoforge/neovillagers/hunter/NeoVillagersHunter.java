@@ -38,7 +38,7 @@ public class NeoVillagersHunter {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(SetupBlocks.HUNTING_TABLE);
+            event.accept(SetupBlocks.HUNTING);
         }
     }
 }

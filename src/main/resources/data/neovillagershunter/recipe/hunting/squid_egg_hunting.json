@@ -3,10 +3,8 @@
   "group": "eggs",
   "weight": 5,
   "max": 2,
-  "ingredient": {
-    "id": "minecraft:kelp",
-    "count": 2
-  },
+  "ingredient": "minecraft:kelp",
+  "count": 4,
   "result": {
     "id": "minecraft:squid_spawn_egg",
     "count": 1
