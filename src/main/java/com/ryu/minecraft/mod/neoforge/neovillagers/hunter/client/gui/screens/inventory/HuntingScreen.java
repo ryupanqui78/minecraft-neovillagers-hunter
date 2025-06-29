@@ -42,8 +42,15 @@ public class HuntingScreen extends AbstractContainerScreen<HuntingMenu> {
             pGuiGraphics.blit(RenderType::guiTextured, HuntingScreen.TEXTURE, this.leftPos + 87, this.topPos + 35, 176,
                     0, 22, 15, 256, 256);
             if (isHover) {
+                final int numMissing = this.menu.getNumIngredientsRequired();
                 final List<Component> list = new ArrayList<>();
-                list.add((Component.translatable("container.hunting.missing.resource")).withStyle(ChatFormatting.RED));
+                if (numMissing == 255) {
+                    list.add((Component.translatable("container.hunting.invalid.resource"))
+                            .withStyle(ChatFormatting.RED));
+                } else {
+                    list.add((Component.translatable("container.hunting.missing.resource", numMissing))
+                            .withStyle(ChatFormatting.RED));
+                }
                 pGuiGraphics.renderComponentTooltip(this.font, list, pMouseX, pMouseY);
             }
         }

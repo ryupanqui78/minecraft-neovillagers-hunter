@@ -37,6 +37,11 @@ public class HuntingMenu extends AbstractContainerMenu {
         }
         
         @Override
+        public boolean isActive() {
+            return !HuntingMenu.this.isMissingResources();
+        }
+        
+        @Override
         public boolean mayPlace(ItemStack itemStack) {
             return false;
         }
@@ -65,7 +70,6 @@ public class HuntingMenu extends AbstractContainerMenu {
     };
     
     private final Optional<HuntingRecipe> randomSelection;
-    private final boolean hasResources = true;
     
     // Client constructor
     public HuntingMenu(int pContainerId, Inventory playerInventory) {
@@ -91,8 +95,13 @@ public class HuntingMenu extends AbstractContainerMenu {
         this.randomSelection = HuntingHelper.selectOneRandomEgg(this.level, HuntingMenu.seed);
     }
     
+    public int getNumIngredientsRequired() {
+        return this.numIngredientsRequired.get();
+    }
+    
     public boolean isMissingResources() {
-        return !this.hasResources;
+        final ItemStack stack = this.slots.get(2).getItem();
+        return (stack.getCount() - this.numIngredientsRequired.get()) < 0;
     }
     
     public void onTake(Player player, ItemStack itemStack) {
@@ -161,12 +170,11 @@ public class HuntingMenu extends AbstractContainerMenu {
         final ItemStack itemStack = this.inputSlots.getItem(0);
         final ItemStack emeraldStack = this.inputSlots.getItem(1);
         
-        this.numIngredientsRequired.set(0);
         if (!itemStack.isEmpty() && !emeraldStack.isEmpty()) {
             final ItemStack resource = this.inputSlots.getItem(2);
             if (resource.isEmpty() && this.randomSelection.isPresent()) {
                 this.resultSlot.setItem(0, this.randomSelection.get().getResult().copy());
-                this.numIngredientsRequired.set(this.randomSelection.get().getCount());
+                this.numIngredientsRequired.set(0);
             } else {
                 if (this.level instanceof final ServerLevel serverLevel) {
                     final Optional<RecipeHolder<HuntingRecipe>> recipeResult = serverLevel.recipeAccess()
@@ -176,13 +184,16 @@ public class HuntingMenu extends AbstractContainerMenu {
                         final HuntingRecipe recipe = recipeResult.get().value();
                         this.numIngredientsRequired.set(recipe.getCount());
                         this.resultSlot.setItem(0, recipe.getResult().copy());
+                    } else {
+                        this.numIngredientsRequired.set(255);
+                        this.resultSlot.setItem(0, ItemStack.EMPTY);
                     }
                 }
             }
         } else {
             this.resultSlot.setItem(0, ItemStack.EMPTY);
         }
-        
+        this.broadcastChanges();
     }
     
     @Override

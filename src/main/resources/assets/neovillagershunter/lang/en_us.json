@@ -1,6 +1,9 @@
 {
   "block.neovillagershunter.hunting": "Hunting table",
   
+  "container.hunting.invalid.resource": "Resource is not valid to hunting",
+  "container.hunting.missing.resource": "Required at least %s resources for this animal",
+  
   "entity.minecraft.villager.neovillagershunter.hunter": "Hunter",
   
   "filled_map.mineshaft": "Mineshaft Explorer Map",
