@@ -108,7 +108,7 @@ public class HuntingMenu extends AbstractContainerMenu {
         final ItemStack stack = this.slots.get(0).getItem();
         final ItemStack emeraldStack = this.slots.get(1).getItem();
         final ItemStack resource = this.slots.get(2).getItem();
-        itemStack.onCraftedBy(player.level(), player, itemStack.getCount());
+        itemStack.onCraftedBy(player, itemStack.getCount());
         stack.shrink(1);
         emeraldStack.shrink(1);
         if (!resource.isEmpty()) {
@@ -142,7 +142,7 @@ public class HuntingMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             } else if (pIndex == 3) {
-                item.onCraftedBy(slotItem, pPlayer.level(), pPlayer);
+                item.onCraftedBy(slotItem, pPlayer);
                 if (!this.moveItemStackTo(slotItem, 4, 40, true)) {
                     return ItemStack.EMPTY;
                 }

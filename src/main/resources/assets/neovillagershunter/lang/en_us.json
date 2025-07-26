@@ -4,7 +4,7 @@
   "container.hunting.invalid.resource": "Resource is not valid to hunting",
   "container.hunting.missing.resource": "Required at least %s resources for this animal",
   
-  "entity.minecraft.villager.neovillagershunter.hunter": "Hunter",
+  "entity.neovillagershunter.villager.hunter": "Hunter",
   
   "filled_map.mineshaft": "Mineshaft Explorer Map",
   

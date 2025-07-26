@@ -8,7 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
-@EventBusSubscriber(modid = NeoVillagersHunter.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = NeoVillagersHunter.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SetupClientModEvents {
     
     @SubscribeEvent
