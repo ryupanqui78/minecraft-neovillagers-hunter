@@ -2,27 +2,35 @@ package com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.trades;
 
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 
-public class EmeraldForItemTradeOffer extends TradeOfferItemListing {
-    private static final ItemStack SELL_ITEM = new ItemStack(Items.EMERALD);
+public class EmeraldForItemTradeOffer implements VillagerTrades.ItemListing {
     
-    private final ItemCost itemCost;
+    private final Item item;
+    private final int cost;
+    private final int maxUses;
+    private final int villagerXp;
+    private final float priceMultiplier;
     
-    public EmeraldForItemTradeOffer(ItemLike pItemCost, int pCost, int pMaxUses, int pVillagerXp) {
-        super(pMaxUses, pVillagerXp);
-        
-        this.itemCost = new ItemCost(pItemCost, pCost);
+    public EmeraldForItemTradeOffer(ItemLike itemBuy, int cost, int maxUses, int xpVillager) {
+        this.item = itemBuy.asItem();
+        this.cost = cost;
+        this.maxUses = maxUses;
+        this.villagerXp = xpVillager;
+        this.priceMultiplier = 0.05F;
     }
     
     @Override
     public MerchantOffer getOffer(Entity pTrader, RandomSource pRandom) {
-        return new MerchantOffer(this.itemCost, EmeraldForItemTradeOffer.SELL_ITEM, this.maxUses, this.villagerXp,
-                TradeOfferItemListing.PRICE_MULTIPLIER);
+        final ItemCost itemstack = new ItemCost(this.item, this.cost);
+        return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp,
+                this.priceMultiplier);
     }
     
 }

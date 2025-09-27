@@ -11,6 +11,7 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupVillagers;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
@@ -20,9 +21,9 @@ public class NeoVillagersHunter {
     public static final String MODID = "neovillagershunter";
     public static final Logger LOGGER = LogUtils.getLogger();
     
-    public NeoVillagersHunter(IEventBus modEventBus) {
-        SetupBlocks.ITEMS.register(modEventBus);
+    public NeoVillagersHunter(IEventBus modEventBus, ModContainer modContainer) {
         SetupBlocks.BLOCKS.register(modEventBus);
+        SetupBlocks.ITEMS.register(modEventBus);
         
         SetupMenus.MENUS.register(modEventBus);
         
