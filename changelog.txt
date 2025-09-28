@@ -1,3 +1,5 @@
+0.7.5-1.21.7 Changelog:
+ - Migrating to Minecraft NeoForge 1.21.7.
 0.6.5-1.21.6 Changelog:
  - Updating trades of Hunter.
 0.6.4-1.21.6 Changelog:
