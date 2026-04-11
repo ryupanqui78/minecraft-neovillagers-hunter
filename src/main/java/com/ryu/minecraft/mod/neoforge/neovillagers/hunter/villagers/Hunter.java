@@ -11,11 +11,11 @@ import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.trades.ItemF
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.trades.RandomItemForEmeraldTradeOffer;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerTrades.ItemListing;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -28,7 +28,7 @@ public class Hunter extends Worker {
             Items.PRISMARINE_SHARD, Items.GHAST_TEAR);
     
     public static VillagerProfession registerVillager() {
-        final ResourceLocation villagerResource = ResourceLocation.fromNamespaceAndPath(NeoVillagersHunter.MODID,
+        final Identifier villagerResource = Identifier.fromNamespaceAndPath(NeoVillagersHunter.MODID,
                 Hunter.ENTITY_NAME);
         final Component villager = Component
                 .translatable("entity." + villagerResource.getNamespace() + ".villager." + villagerResource.getPath());

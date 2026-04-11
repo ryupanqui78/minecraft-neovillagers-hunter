@@ -1,5 +1,8 @@
 package com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.trades;
 
+import org.jspecify.annotations.Nullable;
+
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +23,7 @@ public class EmeraldForItemTradeOffer extends TradeOfferItemListing {
     }
     
     @Override
-    public MerchantOffer getOffer(Entity pTrader, RandomSource pRandom) {
+    public @Nullable MerchantOffer getOffer(ServerLevel level, Entity entity, RandomSource random) {
         return new MerchantOffer(this.itemCost, EmeraldForItemTradeOffer.SELL_ITEM, this.maxUses, this.villagerXp,
                 TradeOfferItemListing.PRICE_MULTIPLIER);
     }

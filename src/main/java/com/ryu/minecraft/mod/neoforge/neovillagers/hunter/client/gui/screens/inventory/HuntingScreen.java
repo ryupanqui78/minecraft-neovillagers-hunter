@@ -12,12 +12,12 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
 public class HuntingScreen extends AbstractContainerScreen<HuntingMenu> {
     
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(NeoVillagersHunter.MODID,
+    private static final Identifier TEXTURE = Identifier.fromNamespaceAndPath(NeoVillagersHunter.MODID,
             "textures/gui/container/hunting.png");
     
     public HuntingScreen(HuntingMenu pMenu, Inventory pPlayerInventory, Component pTitle) {

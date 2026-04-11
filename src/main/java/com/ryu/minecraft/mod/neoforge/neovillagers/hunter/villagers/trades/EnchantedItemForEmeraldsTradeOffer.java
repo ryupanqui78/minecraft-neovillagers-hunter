@@ -2,9 +2,12 @@ package com.ryu.minecraft.mod.neoforge.neovillagers.hunter.villagers.trades;
 
 import java.util.Optional;
 
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -27,12 +30,12 @@ public class EnchantedItemForEmeraldsTradeOffer extends TradeOfferItemListing {
     }
     
     @Override
-    public MerchantOffer getOffer(Entity pTrader, RandomSource pRandom) {
-        final int i = 5 + pRandom.nextInt(15);
-        final RegistryAccess registryaccess = pTrader.level().registryAccess();
+    public @Nullable MerchantOffer getOffer(ServerLevel level, Entity entity, RandomSource random) {
+        final int i = 5 + random.nextInt(15);
+        final RegistryAccess registryaccess = level.registryAccess();
         final Optional<HolderSet.Named<Enchantment>> optional = registryaccess.lookupOrThrow(Registries.ENCHANTMENT)
                 .get(EnchantmentTags.ON_TRADED_EQUIPMENT);
-        final ItemStack itemstack = EnchantmentHelper.enchantItem(pRandom, new ItemStack(this.itemSell.getItem()), i,
+        final ItemStack itemstack = EnchantmentHelper.enchantItem(random, new ItemStack(this.itemSell.getItem()), i,
                 registryaccess, optional);
         final int j = Math.min(this.baseEmeraldCost + i, 64);
         final ItemCost itemcost = new ItemCost(Items.EMERALD, j);
