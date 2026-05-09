@@ -1,3 +1,5 @@
+1.11.5-26.1 Changelog:
+ - Migrating to 26.1.
 0.11.5-1.21.11 Changelog:
  - Migrating to Minecraft NeoForge 1.21.11.
 0.10.5-1.21.10 Changelog:

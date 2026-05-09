@@ -48,7 +48,7 @@ public class HuntingBlock extends Block {
     
     @Override
     public MenuProvider getMenuProvider(BlockState pState, Level pLevel, BlockPos pPos) {
-        return new SimpleMenuProvider((pContainerId, playerInv, pAccess) -> new HuntingMenu(pContainerId, playerInv,
+        return new SimpleMenuProvider((pContainerId, playerInv, _) -> new HuntingMenu(pContainerId, playerInv,
                 ContainerLevelAccess.create(pLevel, pPos)), HuntingBlock.CONTAINER_TITLE);
     }
     

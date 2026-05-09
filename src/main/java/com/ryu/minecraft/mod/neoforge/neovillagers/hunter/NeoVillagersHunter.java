@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupBlocks;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupMenus;
-import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeSerializer;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupRecipeType;
 import com.ryu.minecraft.mod.neoforge.neovillagers.hunter.setup.SetupVillagers;
 
@@ -26,11 +25,11 @@ public class NeoVillagersHunter {
         SetupBlocks.ITEMS.register(modEventBus);
         
         SetupMenus.MENUS.register(modEventBus);
-        
         SetupVillagers.register(modEventBus);
         
-        SetupRecipeType.REGISTER.register(modEventBus);
-        SetupRecipeSerializer.REGISTER.register(modEventBus);
+        SetupRecipeType.RECIPE_BOOK_CATEGORIES.register(modEventBus);
+        SetupRecipeType.RECIPE_TYPES.register(modEventBus);
+        SetupRecipeType.RECIPE_SERIALIZERS.register(modEventBus);
         
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

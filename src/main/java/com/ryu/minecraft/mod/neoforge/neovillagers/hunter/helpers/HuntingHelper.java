@@ -47,13 +47,12 @@ public class HuntingHelper {
                     .byType(SetupRecipeType.HUNTING.get());
             final List<HuntingRecipe> listOfEggs = recipes.stream().map(e -> e.value())
                     .collect(Collectors.toCollection(ArrayList::new));
-            final double totalWeight = listOfEggs.stream().mapToDouble(HuntingRecipe::getWeight).reduce(0.0,
-                    Double::sum);
+            final double totalWeight = listOfEggs.stream().mapToDouble(HuntingRecipe::weight).reduce(0.0, Double::sum);
             final double r = seed.nextDouble() * totalWeight;
             double countWeight = 0.0;
-            listOfEggs.sort(Comparator.comparing(HuntingRecipe::getWeight));
+            listOfEggs.sort(Comparator.comparing(HuntingRecipe::weight));
             for (final HuntingRecipe item : listOfEggs) {
-                countWeight += item.getWeight();
+                countWeight += item.weight();
                 if (countWeight >= r) {
                     return Optional.of(item);
                 }

@@ -60,7 +60,7 @@ public class HuntingMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final Level level;
     private final DataSlot numIngredientsRequired = DataSlot.standalone();
-    private final ResultContainer resultSlot = new ResultContainer();
+    private final ResultContainer resultContainer = new ResultContainer();
     private final Container inputSlots = new SimpleContainer(3) {
         @Override
         public void setChanged() {
@@ -70,6 +70,9 @@ public class HuntingMenu extends AbstractContainerMenu {
     };
     
     private final Optional<HuntingRecipe> randomSelection;
+    
+    protected Runnable slotUpdateListener = () -> {
+    };
     
     // Client constructor
     public HuntingMenu(int pContainerId, Inventory playerInventory) {
@@ -87,7 +90,7 @@ public class HuntingMenu extends AbstractContainerMenu {
         this.addSlot(new ItemSlotInput(this.inputSlots, 1, 38, 50, Items.ARROW));
         this.addSlot(new Slot(this.inputSlots, 2, 66, 35));
         
-        this.addSlot(new SlotOutput(this.resultSlot, 0, 120, 35));
+        this.addSlot(new SlotOutput(this.resultContainer, 0, 120, 35));
         
         HuntingHelper.addDefaultInventorySlots(pInventory, 8, 142, 84, this::addSlot);
         
@@ -162,7 +165,7 @@ public class HuntingMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        this.access.execute((pLevel, pPos) -> this.clearContainer(pPlayer, this.inputSlots));
+        this.access.execute((_, _) -> this.clearContainer(pPlayer, this.inputSlots));
     }
     
     @Override
@@ -173,7 +176,7 @@ public class HuntingMenu extends AbstractContainerMenu {
         if (!itemStack.isEmpty() && !emeraldStack.isEmpty()) {
             final ItemStack resource = this.inputSlots.getItem(2);
             if (resource.isEmpty() && this.randomSelection.isPresent()) {
-                this.resultSlot.setItem(0, this.randomSelection.get().getResult().copy());
+                this.resultContainer.setItem(0, this.randomSelection.get().getResultItem().copy());
                 this.numIngredientsRequired.set(0);
             } else {
                 if (this.level instanceof final ServerLevel serverLevel) {
@@ -182,16 +185,16 @@ public class HuntingMenu extends AbstractContainerMenu {
                     
                     if (recipeResult.isPresent()) {
                         final HuntingRecipe recipe = recipeResult.get().value();
-                        this.numIngredientsRequired.set(recipe.getCount());
-                        this.resultSlot.setItem(0, recipe.getResult().copy());
+                        this.numIngredientsRequired.set(recipe.count());
+                        this.resultContainer.setItem(0, recipe.getResultItem().copy());
                     } else {
                         this.numIngredientsRequired.set(255);
-                        this.resultSlot.setItem(0, ItemStack.EMPTY);
+                        this.resultContainer.setItem(0, ItemStack.EMPTY);
                     }
                 }
             }
         } else {
-            this.resultSlot.setItem(0, ItemStack.EMPTY);
+            this.resultContainer.setItem(0, ItemStack.EMPTY);
         }
         this.broadcastChanges();
     }
